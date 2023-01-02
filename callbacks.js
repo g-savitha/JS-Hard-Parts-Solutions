@@ -1,8 +1,5 @@
-// These exercises are taken from CSBin's callback lesson
-// https://csbin.io/callbacks
-
 // Type JavaScript here and click "Run Code" or press Ctrl + s
-console.log('Hello, world!');
+// console.log('Hello, world!');
 
 // Challenge 1
 function addTwo(num) {
@@ -10,17 +7,17 @@ function addTwo(num) {
 }
 
 // To check if you've completed it, uncomment these console.logs!
-console.log(addTwo(3));
-console.log(addTwo(10));
+// console.log(addTwo(3));
+// console.log(addTwo(10));
 
 // Challenge 2
 function addS(word) {
-  return word + 's';
+  return word + "s";
 }
 
 // uncomment these to check your work
-console.log(addS('pizza'));
-console.log(addS('bagel'));
+// console.log(addS('pizza'));
+// console.log(addS('bagel'));
 
 // Challenge 3
 function map(array, callback) {
@@ -31,7 +28,7 @@ function map(array, callback) {
   return op;
 }
 
-console.log(map([1, 2, 3], addTwo));
+// console.log(map([1, 2, 3], addTwo));
 
 // Challenge 4
 function forEach(array, callback) {
@@ -41,12 +38,12 @@ function forEach(array, callback) {
 }
 
 // see for yourself if your forEach works!
-let alphabet = '';
-const letters = ['a', 'b', 'c', 'd'];
+let alphabet = "";
+const letters = ["a", "b", "c", "d"];
 forEach(letters, function (char) {
   alphabet += char;
 });
-console.log(alphabet);
+// console.log(alphabet);
 
 // Challenge 5
 function mapWith(array, callback) {
@@ -54,7 +51,7 @@ function mapWith(array, callback) {
   forEach(array, (el) => op.push(callback(el)));
   return op;
 }
-console.log(mapWith([1, 2, 3], addTwo));
+// console.log(mapWith([1, 2, 3], addTwo));
 
 // Challenge 6
 function reduce(array, callback, initialValue) {
@@ -68,7 +65,7 @@ const nums = [4, 1, 3];
 const add = function (a, b) {
   return a + b;
 };
-console.log(reduce(nums, add, 0));
+// console.log(reduce(nums, add, 0))
 
 // Challenge 7
 function intersection(arrays) {
@@ -77,13 +74,7 @@ function intersection(arrays) {
   });
 }
 
-console.log(
-  intersection([
-    [5, 10, 15, 20],
-    [15, 88, 1, 5, 7],
-    [1, 10, 15, 5, 20],
-  ])
-);
+// console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
 // should log: [5, 15]
 
 // Challenge 8
@@ -93,146 +84,146 @@ function union(arrays) {
   });
 }
 
-console.log(
-  union([
-    [5, 10, 15],
-    [15, 88, 1, 5, 7],
-    [100, 15, 10, 1, 5],
-  ])
-);
+// console.log(union([[5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]]));
 // should log: [5, 10, 15, 88, 1, 7, 100]
 
 // Challenge 9
 function objOfMatches(array1, array2, callback) {
-  const op = {};
-  for (let i = 0; i < array2.length; i++) {
-    if (callback(array1[i]) == array2[i]) {
-      op[array1[i]] = array2[i];
+  const obj = {};
+  for (let i = 0; i < array1.length; i++) {
+    if (callback(array1[i]) === array2[i]) {
+      obj[array1[i]] = array2[i];
     }
   }
-  return op;
+  return obj;
 }
 
-console.log(
-  objOfMatches(
-    ['hi', 'howdy', 'bye', 'later', 'hello'],
-    ['HI', 'Howdy', 'BYE', 'LATER', 'hello'],
-    function (str) {
-      return str.toUpperCase();
-    }
-  )
-);
+// console.log(objOfMatches(['hi', 'howdy', 'bye', 'later', 'hello'], ['HI', 'Howdy', 'BYE', 'LATER', 'hello'], function(str) { return str.toUpperCase(); }));
 // should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
 
 // Challenge 10
 function multiMap(arrVals, arrCallbacks) {
-  const multiMapObj = {};
+  const multiMap = {};
+  let res = [];
   for (let i = 0; i < arrVals.length; i++) {
-    multiMapObj[arrVals[i]] = [];
+    multiMap[arrVals[i]] = [];
     for (let j = 0; j < arrCallbacks.length; j++) {
-      multiMapObj[arrVals[i]].push(arrCallbacks[j](arrVals[i]));
+      multiMap[arrVals[i]].push(arrCallbacks[j](arrVals[i]));
     }
   }
-  return multiMapObj;
+  return multiMap;
 }
 
-console.log(
-  multiMap(
-    ['catfood', 'glue', 'beer'],
-    [
-      function (str) {
-        return str.toUpperCase();
-      },
-      function (str) {
-        return str[0].toUpperCase() + str.slice(1).toLowerCase();
-      },
-      function (str) {
-        return str + str;
-      },
-    ]
-  )
-);
+// console.log(multiMap(['catfood', 'glue', 'beer'], [function(str) { return str.toUpperCase(); }, function(str) { return str[0].toUpperCase() + str.slice(1).toLowerCase(); }, function(str) { return str + str; }]));
 // should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
 
 // Challenge 11
 function objectFilter(obj, callback) {
-  const op = {};
+  const res = {};
   for (let key in obj) {
-    if (callback(key) === obj[key]) {
-      op[key] = obj[key];
+    if (obj[key] === callback(key)) {
+      res[key] = callback(key);
     }
   }
-  return op;
+  return res;
 }
 
 const cities = {
-  London: 'LONDON',
-  LA: 'Los Angeles',
-  Paris: 'PARIS',
+  London: "LONDON",
+  LA: "Los Angeles",
+  Paris: "PARIS",
 };
-console.log(objectFilter(cities, (city) => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
+// console.log(objectFilter(cities, city => city.toUpperCase()))
+// Should log { London: 'LONDON', Paris: 'PARIS'}
 
 // Challenge 12
 function majority(array, callback) {
-  let countT = 0,
-    countF = 0;
+  let countT = 0;
+  let countF = 0;
   for (let i = 0; i < array.length; i++) {
     callback(array[i]) ? ++countT : ++countF;
   }
-  return countT === countF ? false : true;
+
+  return countT > countF;
 }
 
 // /*** Uncomment these to check your work! ***/
-const isOdd = function (num) {
-  return num % 2 === 1;
-};
-console.log(majority([1, 2, 3, 4, 5], isOdd)); // should log: true
-console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
+// const isOdd2 = function(num) { return num % 2 === 1; };
+// console.log(majority([1, 2, 3, 4, 5], isOdd2)); // should log: true
+// console.log(majority([2, 3, 4, 5], isOdd2)); // should log: false
 
 // Challenge 13
-
 function prioritize(array, callback) {
-  const newArr = [];
+  const res = [];
   for (let i = 0; i < array.length; i++) {
     if (callback(array[i])) {
-      newArr.push(array[i]);
+      res.push(array[i]);
     }
   }
-  for (let i = 0; i < array.length; i++)
+  for (let i = 0; i < array.length; i++) {
     if (!callback(array[i])) {
-      newArr.push(array[i]);
+      res.push(array[i]);
     }
-  return newArr;
+  }
+  return res;
 }
 
 // /*** Uncomment these to check your work! ***/
-const startsWithS = function (str) {
-  return str[0] === 's' || str[0] === 'S';
-};
-console.log(
-  prioritize(
-    ['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'],
-    startsWithS
-  )
-); // should log:
-['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
+// const startsWithS = function(str) { return str[0] === 's' || str[0] === 'S'; };
+// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS));
+// should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends']
 
 // Challenge 14
-function countBy(array, callback) {}
+function countBy(array, callback) {
+  const res = {};
+  let countO = 0,
+    countE = 0;
+  for (let num of array) {
+    let key = callback(num);
+    key === "odd" ? (res[key] = ++countO) : (res[key] = ++countE);
+  }
+  return res;
+}
 
 // /*** Uncomment these to check your work! ***/
 // console.log(countBy([1, 2, 3, 4, 5], function(num) {
 // if (num % 2 === 0) return 'even';
 // else return 'odd';
-// })); // should log: { odd: 3, even: 2 }
+// }));
+// should log: { odd: 3, even: 2 }
 
 // Challenge 15
-function groupBy(array, callback) {}
+function groupBy(array, callback) {
+  const res = {};
+  for (let i of array) {
+    let dec = callback(i);
+    if (dec in res) {
+      res[dec].push(i);
+    } else {
+      res[dec] = [i];
+    }
+  }
+  return res;
+}
+
+//using reduce
+function groupBy(array, callback) {
+  return array.reduce((res, i) => {
+    const dec = callback(i);
+    if (dec in res) {
+      res[dec].push(i);
+    } else {
+      res[dec] = [i];
+    }
+    return res;
+  }, {});
+}
 
 // /*** Uncomment these to check your work! ***/
 // const decimals = [1.3, 2.1, 2.4];
 // const floored = function(num) { return Math.floor(num); };
-// console.log(groupBy(decimals, floored)); // should log: { 1: [1.3], 2: [2.1, 2.4] }
+// console.log(groupBy(decimals, floored));
+// should log: { 1: [1.3], 2: [2.1, 2.4] }
 
 // Challenge 16
 function goodKeys(obj, callback) {}
