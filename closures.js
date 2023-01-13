@@ -1,12 +1,23 @@
 // CHALLENGE 1
-function createFunction() {}
+function createFunction() {
+  function print() {
+    console.log("hello");
+  }
+  return print;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const function1 = createFunction();
 // function1(); // => should console.log('hello');
 
 // CHALLENGE 2
-function createFunctionPrinter(input) {}
+function createFunctionPrinter(input) {
+  function printer() {
+    console.log(input);
+  }
+
+  return printer;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const printSample = createFunctionPrinter('sample');
@@ -38,10 +49,15 @@ const jasCounter = outer();
 // jasCounter();
 // willCounter();
 
-function addByX(x) {}
+function addByX(x) {
+  function increment(y) {
+    return x + y;
+  }
+  return increment;
+}
 
 // /*** Uncomment these to check your work! ***/
-// const addByTwo = addByX(2);
+const addByTwo = addByX(2);
 // addByTwo(1); // => should return 3
 // addByTwo(2); // => should return 4
 // addByTwo(3); // => should return 5
@@ -55,7 +71,44 @@ function addByX(x) {}
 // addByFour(5); // => should return 9
 
 // CHALLENGE 4
-function once(func) {}
+function once(func) {
+  let firstCall = true;
+  let result;
+  return function (...args) {
+    if (firstCall) {
+      result = func(...args);
+      firstCall = false;
+    }
+    return result;
+  };
+}
+
+//using apply
+
+function once(func) {
+  let firstCall = true;
+  let result;
+  return function () {
+    if (firstCall) {
+      result = func.apply(this, arguments);
+      firstCall = false;
+    }
+    return result;
+  };
+}
+
+// using count variable instead of boolean
+function once(func) {
+  let count = 0;
+  let result;
+  return function (...args) {
+    if (count === 0) {
+      result = func(...args);
+      count++;
+    }
+    return result;
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
 // const onceFunc = once(addByTwo);
@@ -64,7 +117,12 @@ function once(func) {}
 // console.log(onceFunc(9001));  // => should log 6
 
 // CHALLENGE 5
-function after(count, func) {}
+function after(count, cb) {
+  let callCount = 0;
+  return (...args) => {
+    if (++callCount >= count) cb(...args);
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
 // const called = function() { console.log('hello') };
@@ -74,10 +132,24 @@ function after(count, func) {}
 // afterCalled(); // => 'hello' is printed
 
 // CHALLENGE 6
-function delay(func, wait) {}
+function delay(cb, wait) {
+  setTimeOut(() => {
+    cb();
+  }, wait);
+}
 
 // CHALLENGE 7
-function rollCall(names) {}
+function rollCall(names) {
+  let i = 0;
+  return () => {
+    if (i < names.length) {
+      console.log(names[i]);
+      i++;
+    } else {
+      console.log("Everyone accounted for");
+    }
+  };
+}
 
 // /*** Uncomment these to check your work! ***/
 // const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth'])
